@@ -1,5 +1,36 @@
 # Grafana OAuth integration with OpenShift using an Auth Proxy
 
+## Example running on OpenShift
+
+NOTE: Uses https://github.com/openshift/oauth-proxy
+
+**Create a new project in OpenShift**
+
+```bash
+export GRAFANA_PROJECT=grafana-oauth-proxy
+oc new-project $GRAFANA_PROJECT
+```
+
+**Create Grafana & oauth proxy resources**
+
+```bash
+oc process -f grafana_oauth_proxy_template.yaml | oc create -f -
+```
+
+**Go to the proxy route & login with OpenShift credentials**
+
+```
+oc get route proxy --template "https://{{.spec.host}} "
+```
+
+You should initially see a 'Sign in with an OpenShift account' button.
+Click it, then sign into OpenShift.
+You should be redirected to Grafana and be logged in.
+
+![grafana dashboard](grafana_dashboard.png?raw=true "Grafana Dashboard")
+
+## Alternative Approach: Local Docker auth proxy
+
 **Assumptions**
 
 * Docker installed

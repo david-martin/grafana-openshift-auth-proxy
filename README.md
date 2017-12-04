@@ -1,5 +1,10 @@
 # Grafana OAuth integration with OpenShift using an Auth Proxy
 
+**Assumptions**
+
+* Docker installed
+* Locally running OpenShift cluster available at https://192.168.37.1:8443
+
 **Run Grafana**
 
 ```bash
